@@ -222,6 +222,29 @@ Polynomial & Polynomial::operator/=(double rhs)
 	return *this;
 }
 
+double & Polynomial::operator()(double rhs)
+{
+	double value = 0.0;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (coefs[i] != 0.0)
+			value = value + coefs[i] * pow(rhs, i);
+	}
+	return value;
+}
+
+double & Polynomial::operator[](int rhs)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (i == rhs)
+		{
+			return coefs[rhs];
+		}
+	}
+}
+
 
 //Operator +
 Polynomial operator+(const Polynomial & lhs, const Polynomial & rhs)
@@ -237,7 +260,7 @@ Polynomial operator+(const Polynomial & lhs, double rhs)
 	answer += rhs;
 	return answer;
 }
-
+	
 Polynomial operator+(double lhs, const Polynomial & rhs) {
 	Polynomial answer(rhs);
 	answer += lhs;
