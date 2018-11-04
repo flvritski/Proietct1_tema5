@@ -35,6 +35,9 @@ public:
 	Polynomial & operator/=(const Polynomial rhs);
 	Polynomial & operator/=(double rhs);
 
+	double & operator()(double rhs);
+	double & operator[](int rhs);
+
 
 	friend Polynomial operator-(const Polynomial &p);
 	friend Polynomial operator+(const Polynomial &p);
