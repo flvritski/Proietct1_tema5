@@ -59,7 +59,7 @@ void Polynomial::print(std::ostream & out) const {
 
 void Polynomial::show(std::istream & in)
 {
-	std::cout << "Enter the degree of polynomial: ";
+	std::cout << "Enter the size of coefs array: ";
 	in >> size;
 	delete[] coefs;
 	coefs = new double[size];
@@ -174,8 +174,8 @@ Polynomial & Polynomial::operator*=(const Polynomial & rhs)
 }
 
 Polynomial & Polynomial::operator-=(const Polynomial & rhs)
-{
-	int newSize = (rhs.size < size) ? rhs.size : size;
+{	
+	int newSize = (rhs.size > size) ? rhs.size : size;
 	double *newCoef = new double[newSize];
 
 	for (int i = 0; i < newSize; i++) {
@@ -185,12 +185,13 @@ Polynomial & Polynomial::operator-=(const Polynomial & rhs)
 		newCoef[i] -= rhs.coefs[i];
 	}
 	for (int i = 0; i < size; i++) {
-		newCoef[i] -= coefs[i];
+		newCoef[i] += coefs[i];
 	}
 	delete[] coefs;
 	coefs = newCoef;
 	size = newSize;
 	return *this;
+	
 }
 
 Polynomial & Polynomial::operator-=(double rhs)
