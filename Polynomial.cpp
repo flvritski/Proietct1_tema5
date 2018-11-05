@@ -58,7 +58,7 @@ void Polynomial::print(std::ostream & out) const {
 
 void Polynomial::show(std::istream & in)
 {
-	std::cout << "Enter the degree of polynomial: ";
+	std::cout << "Enter the size of coefs array : ";
 	in >> size;
 	delete[] coefs;
 	coefs = new double[size];
