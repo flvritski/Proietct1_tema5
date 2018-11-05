@@ -79,8 +79,13 @@ std::string Polynomial::toString()
 	{
 		std::string c = std::to_string(coefs[i]);
 		std::string d = std::to_string(i);
-		answer += c + '*' + 'X' + '^' + d + " + ";
-	
+		if (coefs[i] > 0) {
+			answer += c + '*' + 'X' + '^' + d + " + ";
+		}
+			if (coefs[i] == 0)
+			{
+				answer += ' ';
+			}
 	}
 	answer.pop_back();
 	
