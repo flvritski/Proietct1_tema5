@@ -13,7 +13,6 @@ Polynomial::Polynomial() : size(1), coefs(new double[1]) {
 
 
 // Parametric constructor
-// Given an array of coefficients C (and it's size N) creates a polynomial
 Polynomial::Polynomial(double coefficients[], int number) :
 	size(number), coefs(new double[number]) {
 	for (int i = 0; i < size; i++) {
