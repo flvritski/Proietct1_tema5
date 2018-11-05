@@ -32,8 +32,10 @@ public:
 	Polynomial & operator*=(const Polynomial & rhs);
 	Polynomial & operator-=(const Polynomial & rhs);
 	Polynomial & operator-=(double rhs);
-	Polynomial & operator/=(const Polynomial rhs);
+	Polynomial & operator/=(const Polynomial & rhs);
 	Polynomial & operator/=(double rhs);
+	Polynomial & operator%=(const Polynomial & rhs);
+	Polynomial & operator%=(double rhs);
 
 	double & operator()(double rhs);
 	double & operator[](int rhs);
@@ -58,10 +60,19 @@ public:
 	friend Polynomial operator/(double lhs, const Polynomial & rhs);
 	friend Polynomial operator/(const Polynomial & lhs, double rhs);
 
+	friend Polynomial operator%(const Polynomial & lhs, const Polynomial & rhs);
+	friend Polynomial operator%(double lhs, const Polynomial & rhs);
+	friend Polynomial operator%(const Polynomial & lhs, double rhs);
+
 	friend Polynomial operator^(const Polynomial & lhs, int rhs);
 
 	friend bool operator==(const Polynomial & lhs, const Polynomial & rhs);
+	friend bool operator==(double lhs, const Polynomial & rhs);
+	friend bool operator==(const Polynomial & lhs, double rhs);
 	friend bool operator!=(const Polynomial & lhs, const Polynomial & rhs);
+	friend bool operator!=(double lhs, const Polynomial & rhs);
+	friend bool operator!=(const Polynomial & lhs, double rhs);
+
 
 	friend std::ostream & operator<<(std::ostream & out, const Polynomial & p);
 	friend std::istream & operator>>(std::istream & in, Polynomial & p);
