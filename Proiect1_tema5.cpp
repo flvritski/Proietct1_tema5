@@ -24,9 +24,9 @@ int main() {
 	
 	std::cout << "Addition p3 + p4 : " << p3 + p4 << '\n';
 	std::cout << "Addition p3+2 : " << p3 + 2 << '\n';
-	-p4;
-	p5 = p3 + p4;
-	std::cout << "Subtraction p3-p4 : " << p5 << '\n';
+	
+	
+	std::cout << "Subtraction p3-p4 : " << p3-p4 << '\n';
 	std::cout << "Subtraction p3-2 : " << p3 - 2 << '\n';
 	Polynomial p6;
 	std::cin >> p6;
@@ -72,6 +72,14 @@ int main() {
 
 	std::cout << "Polynomial value p100 in 2 : " << p100(2) << '\n';
 	std::cout << "Monomial coefficient with grade 1: " << p100[1] << '\n';
+	std::cout << "Negative polynomial -p100 : " << -p100 << '\n';
+	p100 %= 2;
+	std::cout << p100 << '\n';
+	p100 /= 2;
+	std::cout << p100 << '\n';
+	p100 *= 2;
+	std::cout << p100 << '\n';
+
 	
 	system("pause");
 	return 0;
