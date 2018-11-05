@@ -89,7 +89,7 @@ std::string Polynomial::toString()
 
 }
 
-// Overload assignment =
+// Operator =
 Polynomial & Polynomial::operator=(const Polynomial & rhs) {
 	if (this == &rhs) {
 		return *this;
@@ -107,7 +107,7 @@ Polynomial & Polynomial::operator=(const Polynomial & rhs) {
 }
 
 
-// Overload assignment +=
+// Operator +=
 Polynomial & Polynomial::operator+=(const Polynomial & rhs) {
 	int newSize = (rhs.size > size) ? rhs.size : size;
 	double *newCoef = new double[newSize];
@@ -142,7 +142,7 @@ Polynomial & Polynomial::operator+=(double rhs)
 
 
 
-// Overload assignment *= so it supports scalar multiplication
+// Operator *= 
 Polynomial & Polynomial::operator*=(double rhs) {
 	
 	for (int i = 0; i < size; i++) {
@@ -153,7 +153,6 @@ Polynomial & Polynomial::operator*=(double rhs) {
 
 Polynomial & Polynomial::operator*=(const Polynomial & rhs)
 {
-	// TODO: insert return statement here
 
 	int newSize = rhs.size + size - 1;
 	double *newCoef = new double[newSize];
@@ -196,7 +195,6 @@ Polynomial & Polynomial::operator-=(const Polynomial & rhs)
 
 Polynomial & Polynomial::operator-=(double rhs)
 {
-	// TODO: insert return statement here
 	for (int i = 0; i < size; i++)
 	{
 		if (i == 0)
@@ -215,9 +213,17 @@ Polynomial & Polynomial::operator/=(const Polynomial rhs)
 */
 Polynomial & Polynomial::operator/=(double rhs)
 {
-	// TODO: insert return statement here
 	for (int i = 0; i < size; i++) {
 		coefs[i] /= rhs;
+	}
+	return *this;
+}
+
+Polynomial & Polynomial::operator%=(double rhs)
+{
+	for (int i = 0; i < size; i++)
+	{
+		coefs[i] = fmod(coefs[i],rhs);
 	}
 	return *this;
 }
@@ -329,6 +335,28 @@ Polynomial operator/(const Polynomial & lhs, double rhs)
 	return answer;
 }
 
+//Overload %
+
+/*
+Polynomial operator%(const Polynomial & lhs, const Polynomial & rhs)
+{
+
+}
+*/
+
+Polynomial operator%(double lhs, const Polynomial & rhs)
+{
+	Polynomial answer(rhs);
+	answer %= lhs;
+	return answer;
+}
+
+Polynomial operator%(const Polynomial & lhs, double rhs)
+{
+	Polynomial answer(lhs);
+	answer %= rhs;
+	return answer;
+}
 //Overload power
 Polynomial operator^(const Polynomial & lhs, int rhs)
 {
@@ -354,11 +382,14 @@ Polynomial operator-(const Polynomial &p)
 	}
 	return p;
 }
+
 // Positive
 Polynomial operator+(const Polynomial &p)
 {
 	return p;
 }
+
+
 // Overload ==
 bool operator==(const Polynomial & lhs, const Polynomial & rhs) {
 	if (lhs.size != rhs.size) {
@@ -367,6 +398,36 @@ bool operator==(const Polynomial & lhs, const Polynomial & rhs) {
 
 	for (int i = 0; i < lhs.size; i++) {
 		if (lhs.coefs[i] != rhs.coefs[i]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool operator==(double lhs, const Polynomial & rhs)
+{
+
+	if (rhs.size != 1)
+		return false;
+	for (int i = 0; i < rhs.size; i++)
+	{
+		if (rhs.coefs[i] != lhs)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool operator==(const Polynomial & lhs, double rhs)
+{
+
+	if (lhs.size != 1)
+		return false;
+	for (int i = 0; i < lhs.size; i++)
+	{
+		if (lhs.coefs[i] != rhs)
+		{
 			return false;
 		}
 	}
@@ -388,6 +449,36 @@ bool operator!=(const Polynomial & lhs, const Polynomial & rhs)
 		}
 	}
 	return false;
+}
+
+bool operator!=(double lhs, const Polynomial & rhs)
+{
+	if (rhs.size != 1)
+		return true;
+	for (int i = 0; i < rhs.size; i++)
+	{
+		if (rhs.coefs[i] != lhs)
+		{
+			return true;
+		}
+	}
+	return false;
+
+}
+
+bool operator!=(const Polynomial & lhs, double rhs)
+{
+	if (lhs.size != 1)
+		return true;
+	for (int i = 0; i < lhs.size; i++)
+	{
+		if (lhs.coefs[i] != rhs)
+		{
+			return true;
+		}
+	}
+	return false;
+
 }
 
 
